@@ -1,0 +1,38 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 's2i-maven-java' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+set -e
+shopt -s dotglob
+
+# If the 's2i-maven-java' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+if [ ! -f /tmp/src/pom.xml ]; then
+  echo "FATAL - No pom.xml found"
+  exit 1
+fi
+
+# Restore artifacts from the previous build (if they exist).
+#
+if [ -d /tmp/artifacts/.m2 ]; then
+  echo "---> Restoring build artifacts..."
+  mv /tmp/artifacts/.m2 "$HOME"/
+fi
+
+echo "---> Installing application source..."
+cp -Rf /tmp/src/. ./
+
+echo "---> Building application from source..."
+mvn compile
+
+echo "---> Copying built application to app-root..."
+# TODO this may fail if there are more than one jar generated
+#cp -a /opt/app-root/src/build/libs/*.jar /opt/app-root/app.jar
