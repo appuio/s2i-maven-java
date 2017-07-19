@@ -1,4 +1,3 @@
-# S2I Builder with Gradle and Java
+# S2I Builder with Maven and Java
 
-A very simple S2I builder which builds Java applications with Gradle.
-Mainly useful for single-JAR applications like Spring Boot.
+A very simple S2I builder which builds Java applications with Maven.
