@@ -31,8 +31,8 @@ echo "---> Installing application source..."
 cp -Rf /tmp/src/. ./
 
 echo "---> Building application from source..."
-mvn compile
+mvn clean package -DskipTests
 
 echo "---> Copying built application to app-root..."
 # TODO this may fail if there are more than one jar generated
-#cp -a /opt/app-root/src/build/libs/*.jar /opt/app-root/app.jar
+cp -a /opt/app-root/src/target/*.jar /opt/app-root/app.jar
