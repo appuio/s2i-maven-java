@@ -2,7 +2,7 @@ FROM openshift/base-centos7
 
 MAINTAINER Tobias Brunner <tobias.brunner@vshn.ch>
 
-ENV MAVEN_VERSION=3.5.0
+ENV MAVEN_VERSION=3.5.2
 
 # Docker Image Metadata
 LABEL io.k8s.description="Platform for building (Maven) and running plain Java applications" \
