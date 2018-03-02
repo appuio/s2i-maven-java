@@ -18,7 +18,7 @@ RUN INSTALL_PKGS="java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
     yum clean all -y && \
     mkdir -p /opt/s2i/destination
 
-# Install Gradle
+# Install Maven
 RUN wget -q http://www-eu.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
     mkdir /opt/maven && \
     tar xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/maven && \
