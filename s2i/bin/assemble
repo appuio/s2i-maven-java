@@ -31,7 +31,8 @@ echo "---> Installing application source..."
 cp -Rf /tmp/src/. ./
 
 echo "---> Building application from source..."
-mvn ${MVN_GOALS:-clean package} -DskipTests=${MVN_SKIP_TESTS:-true} ${MVN_OPTS}
+mvn ${MVN_GOALS:-clean package} -DskipTests=${MVN_SKIP_TESTS:-true} \
+  -Dmaven.skip.tests=${MVN_SKIP_TESTS:-true} ${MVN_OPTS}
 
 echo "---> Copying built application to app-root..."
 # TODO this may fail if there are more than one jar generated
